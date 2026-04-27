@@ -1,0 +1,25 @@
+class Person:
+    def __init__(self, name, age):
+        self.name = name
+        self.age = age
+
+    def display_info(self):
+        print(f"Name: {self.name}")
+        print(f"Age: {self.age}")
+
+
+class Student(Person):
+    def __init__(self, name, age, course):
+        # Call the parent constructor
+        super().__init__(name, age)
+        self.course = course
+
+    def display_student(self):
+        # Call the parent method
+        self.display_info()
+        print(f"Course: {self.course}")
+
+
+# Example usage
+student1 = Student("Gab", 18, "BSIT")
+student1.display_student()
