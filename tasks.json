@@ -1,0 +1,69 @@
+{
+    "version": "2.0.0",
+    "tasks": [
+        {
+            "label": "Serve GymFit PH",
+            "type": "shell",
+            "command": "pwsh",
+            "args": [
+                "-NoProfile",
+                "-ExecutionPolicy",
+                "Bypass",
+                "-File",
+                "${workspaceFolder}/.vscode/serve-gymfit.ps1",
+                "-Root",
+                "${workspaceFolder}/Gym Techno/gymfit-ph",
+                "-Port",
+                "3000"
+            ],
+            "isBackground": true,
+            "problemMatcher": {
+                "owner": "custom",
+                "pattern": {
+                    "regexp": "."
+                },
+                "background": {
+                    "activeOnStart": true,
+                    "beginsPattern": ".",
+                    "endsPattern": "Serving GymFit PH at http://localhost:3000/"
+                }
+            },
+            "presentation": {
+                "reveal": "always",
+                "panel": "dedicated"
+            }
+        },
+        {
+            "label": "Run GymFit Backend API",
+            "type": "shell",
+            "command": "node",
+            "args": [
+                "${workspaceFolder}/Gym Techno/gymfit-ph/backend/server.js"
+            ],
+            "isBackground": true,
+            "problemMatcher": {
+                "owner": "custom",
+                "pattern": {
+                    "regexp": "."
+                },
+                "background": {
+                    "activeOnStart": true,
+                    "beginsPattern": ".",
+                    "endsPattern": "GymFit PH API running at http://localhost:8787"
+                }
+            },
+            "presentation": {
+                "reveal": "always",
+                "panel": "dedicated"
+            }
+        },
+        {
+            "label": "Start GymFit PH Stack",
+            "dependsOn": [
+                "Serve GymFit PH",
+                "Run GymFit Backend API"
+            ],
+            "dependsOrder": "parallel"
+        }
+    ]
+}
